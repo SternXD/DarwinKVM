@@ -16,20 +16,31 @@ Start by using your favorite terminal text editor. In this example, we'll be usi
 sudo nano /etc/modprobe.d/vfio.conf
 ```
 
-In this new file, you can begin to build your custom vfio configuration. For starters, let's simply add the secondary GPU and block the nvidia module and preload vfio-pci instead.
+In this new file, you can begin to build your custom vfio configuration. For starters, let's simply add the secondary GPU and block the nvidia or the amdgpu module and preload vfio-pci instead.
 
+#### Nvidia
+```bash
+options vfio-pci ids=10de:06cd,10de:0be5
+softdep nvidia pre: vfio-pci
+```
+#### AMD
 ```bash
 options vfio-pci ids=10de:06cd,10de:0be5
 softdep amdgpu pre: vfio-pci
 ```
 
-To apply these changes, we'll need to use ``mkinitcpio`` to rebuild the initial ramdisk environment.
+To apply these changes, we'll need to use ``mkinitcpio`` or ``dracut`` if you are on  to rebuild the initial ramdisk environment.
 
+#### mkinitcpio
 ```bash
 sudo mkinitcpio --all
 ```
+#### Dracut
+```bash
+sudo dracut --regenerate-all --force
+```
 
-Most warnings are okay! Example output:
+Most warnings are okay! Example output for mkinitcpio:
 
 ```bash
 ==> Building image from preset: /etc/mkinitcpio.d/linux.preset: 'default'
