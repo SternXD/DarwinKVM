@@ -29,7 +29,7 @@ options vfio-pci ids=10de:06cd,10de:0be5
 softdep amdgpu pre: vfio-pci
 ```
 
-To apply these changes, we'll need to use ``mkinitcpio`` or ``dracut`` if you are on  to rebuild the initial ramdisk environment.
+To apply these changes, we'll need to use ``mkinitcpio`` or ``dracut`` if you are on plain Arch Linux for example EndeavourOS to rebuild the initial ramdisk environment.
 
 #### mkinitcpio
 ```bash
