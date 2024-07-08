@@ -25,7 +25,7 @@ softdep nvidia pre: vfio-pci
 ```
 #### AMD
 ```bash
-options vfio-pci ids=10de:06cd,10de:0be5
+options vfio-pci ids=1002:73ef,1002:ab28
 softdep amdgpu pre: vfio-pci
 ```
 
